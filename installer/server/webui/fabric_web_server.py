@@ -36,7 +36,7 @@ def send_request(prompt, endpoint):
         "Authorization": f"Bearer {session['token']}",
     }
     data = json.dumps({"input": prompt})
-    response = requests.post(url, headers=headers, data=data, verify=False)
+    response = requests.post(url, headers=headers, data=data, verify=True)
 
     try:
         response = requests.post(url, headers=headers, data=data)
