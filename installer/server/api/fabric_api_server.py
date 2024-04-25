@@ -6,8 +6,8 @@ from functools import wraps
 import re
 import requests
 import os
-from dotenv import load_dotenv
 from importlib import resources
+from security import safe_requests
 
 
 app = Flask(__name__)
@@ -145,7 +145,7 @@ def fetch_content_from_url(url):
     """
 
     try:
-        response = requests.get(url)
+        response = safe_requests.get(url)
         response.raise_for_status()
         sanitized_content = sanitize_content(response.text)
         return sanitized_content
