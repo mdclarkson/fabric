@@ -145,7 +145,7 @@ def fetch_content_from_url(url):
     """
 
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         response.raise_for_status()
         sanitized_content = sanitize_content(response.text)
         return sanitized_content
