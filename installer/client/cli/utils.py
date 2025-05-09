@@ -1,4 +1,3 @@
-import requests
 import os
 from openai import OpenAI, APIConnectionError
 import asyncio
@@ -10,6 +9,7 @@ import zipfile
 import tempfile
 import re
 import shutil
+from security import safe_requests
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
 config_directory = os.path.expanduser("~/.config/fabric")
@@ -376,7 +376,7 @@ class Update:
 
     def download_zip(self, url, save_path):
         """Download the zip file from the specified URL."""
-        response = requests.get(url)
+        response = safe_requests.get(url)
         response.raise_for_status()  # Check if the download was successful
         with open(save_path, 'wb') as f:
             f.write(response.content)
