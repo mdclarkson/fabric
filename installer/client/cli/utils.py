@@ -376,7 +376,7 @@ class Update:
 
     def download_zip(self, url, save_path):
         """Download the zip file from the specified URL."""
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         response.raise_for_status()  # Check if the download was successful
         with open(save_path, 'wb') as f:
             f.write(response.content)

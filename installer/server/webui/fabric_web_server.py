@@ -36,10 +36,10 @@ def send_request(prompt, endpoint):
         "Authorization": f"Bearer {session['token']}",
     }
     data = json.dumps({"input": prompt})
-    response = requests.post(url, headers=headers, data=data, verify=False)
+    response = requests.post(url, headers=headers, data=data, verify=False, timeout=60)
 
     try:
-        response = requests.post(url, headers=headers, data=data)
+        response = requests.post(url, headers=headers, data=data, timeout=60)
         response.raise_for_status()  # raises HTTPError if the response status isn't 200
     except requests.ConnectionError:
         return "Error: Unable to connect to the server."
